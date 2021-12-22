@@ -35,3 +35,26 @@ def two_sum(nums: List[int], target: int) -> List[int]:
     # [1, 2 ,4, 5, 6]
     # [-  -  -  i  -]
     # [-  -  -  -  j]
+
+def two_sum_linear(nums: List[int], target: int) -> List[int]:
+    # if we want to do this in linear time
+    # we can loop through the array and add each element
+    # to a dictionary.
+
+    # create hash table by using a dictionary
+    seen = {}
+    # we can start at 1
+    for i, num in enumerate(nums):
+        if target - num in seen:
+            return (seen[target-num], i)
+        elif num not in seen:
+            # store number in our hash table
+            # we use num for the key, and index for the value
+            seen[num] = i
+        # you can subtract 
+    # and add 0 into dictionary
+    # [2,  9,  7,  4], target = 9
+    # i-1  i
+
+    # is nums[i] + nums[i-1] == target?
+    # if not add nums[i]
