@@ -14,11 +14,30 @@ class SLList:
             current = current.next
         print('Appending ' + new.data)
         current.next = new
+    
     def Print(self):
         current = self.head
         while current is not None:
             print(current.data)
             current = current.next
+    
+    def AddAtHead(self, val):
+        node = Node(val)
+        current = self.head
+        if self.head is None:
+            self.head = node
+        else:
+            node.next = current
+            self.head = node
+    
+    def GetAtIndex(self, index):
+        i = 0
+        current = self.head
+        while current is not None:
+            if i == index:
+                return current.data
+            current = current.next
+            i = i + 1
 
 
 l = SLList()
@@ -27,6 +46,7 @@ l.Append('test')
 l.Append('second')
 l.Print()
 
-l.Append('fourth')
+l.AddAtHead('fourth')
 l.Print()
+print('getting index 2: ', l.GetAtIndex(2))
 #l.AddAtHead('second test')
