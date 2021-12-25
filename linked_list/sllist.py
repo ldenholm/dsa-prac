@@ -5,26 +5,28 @@ class Node:
 
 class SLList:
     def __init__(self):
-        self.head = Node()
-    
-    def AddAtHead(self, val):
+        self.head = None
+
+    def Append(self, val):
         new = Node(val)
         current = self.head
-        self.head = new
-        new.next = current
-    def printer(self):
-        l = []
-        current = self.head
-        while current.next:
-            l.append(current.data)
+        while current.next != None:
             current = current.next
-        for x in l:
-            print(x)
-            
-n = Node('first node')
+        print('Appending ' + new.data)
+        current.next = new
+    def Print(self):
+        current = self.head
+        while current is not None:
+            print(current.data)
+            current = current.next
+
+
 l = SLList()
-second = Node('test')
-print(l.head.data)
-l.AddAtHead('second test')
-print(l.head.data)
-l.printer()
+l.head = Node('head')
+l.Append('test')
+l.Append('second')
+l.Print()
+
+l.Append('fourth')
+l.Print()
+#l.AddAtHead('second test')
