@@ -18,3 +18,12 @@ l3 = [10, 5, 2]
 print(is_sorted_ascending_order(l1))
 print(is_sorted_ascending_order(l2))
 print(is_sorted_ascending_order(l3))
+
+# using a while loop:
+def is_sorted_ascending_while(arr):
+    i = 1
+    while i < len(arr):
+        if arr[i] < arr[i - 1]:
+            return False
+        i = i + 1
+    return True
