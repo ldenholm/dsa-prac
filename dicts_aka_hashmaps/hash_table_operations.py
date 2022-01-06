@@ -14,6 +14,8 @@ print(d2.get('doesnt_exist'), 'key error')
 # POP
 print(d1.pop(2))
 
+# POP ITEM
+d1.pop
 #UPDATING
 d1[1] = 'new val'
 print(d1.get(1))
