@@ -2,16 +2,15 @@ def binary_search(arr, x):
     n = len(arr) - 1
     lower = 0
     mid = (lower + n) // 2
-    i = 0
+    
     while lower <= n:
+        mid = (lower + n) // 2
         if x == arr[mid]:
             return mid
         elif x > arr[mid]:
             lower = mid + 1
-            mid = (lower + n) // 2
         elif x <= arr[mid]:
             n = mid - 1
-            mid = (lower + n) // 2
     return -1
 
  #    0     m    n-1
