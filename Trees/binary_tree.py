@@ -30,3 +30,17 @@ def in_order_traversal(root):
         print(root.key)
         in_order_traversal(root.right)
 in_order_traversal(root)
+
+def pre_order_traversal(root):
+    # preorder = root, left, right
+    if root != None:
+        print(root.key)
+        pre_order_traversal(root.left)
+        pre_order_traversal(root.right)
+
+def post_order_traversal(root):
+    # postorder = left, right, root
+    if root != None:
+        post_order_traversal(root.left)
+        post_order_traversal(root.right)
+        post_order_traversal(root.key)
