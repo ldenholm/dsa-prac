@@ -32,6 +32,15 @@ print(size_of_binary_tree(tree))
 
 print(concise_size_of_binary_tree(tree))
 
+def even_more_concise_size(node):
+    if node == None:
+        return 0
+    else:
+        return even_more_concise_size(node.left) + even_more_concise_size(node.right) + 1
+
+print(even_more_concise_size(tree))
+
+
 #    10
 #   /  \
 #  5   20
