@@ -11,9 +11,9 @@ def search_tree(root, searchval):
     elif root.val == searchval:
         return True
     else:
-        exists_left = search_tree(root.left, searchval)
-        exists_right = search_tree(root.right, searchval)
-        return exists_left or exists_right
+        #exists_left = search_tree(root.left, searchval)
+        #exists_right = search_tree(root.right, searchval)
+        return search_tree(root.left, searchval) or search_tree(root.right, searchval)
     
 tree = Node(60)
 tree.left = Node(40)
