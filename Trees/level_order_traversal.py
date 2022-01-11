@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class Node:
     def __init__(self, k):
         self.left = None
@@ -11,7 +14,18 @@ def level_order_traversal_iterative(root):
 
     # let's use a queue to add all child nodes before
     # printing them.
-    q = {root.val}
+    q = deque()
+    if not root:
+        return
+    q.append(root)
+    while len(q) > 0:
+        node = q.popleft()
+        print(node.val)
+        if node.left:
+            q.append(node.left)
+        if node.right:
+            q.append(node.right)
+
 
 # build the tree
 tree = Node(10)
@@ -22,3 +36,5 @@ tree.left.left = Node(40)
 tree.left.right = Node(50)
 tree.left.right.left = Node(70)
 tree.left.right.right = Node(80)
+
+level_order_traversal_iterative(tree)
