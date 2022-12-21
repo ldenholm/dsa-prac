@@ -35,4 +35,14 @@ with the digit_sums.
 its corresponding digit sum key in hashmap.
 - for each member in the hashmap having > 1 entries,
 sort it in desc (reverse=true) then
-return max(ans, curr[0] + curr[1])
+return max(ans, curr[0] + curr[1]).
+- the above algorithm can be improved by only storing
+the most recent entry for each digit_sum rendering the
+sort() useless.
+```py
+for num in nums:
+    digit_sum = get_digit_sum(num)
+    if digit_sum in dic:
+        ans = max(ans, num + dic[digit_sum])
+    dic[digit_sum] = max(dic[digit_sum], num)
+```
