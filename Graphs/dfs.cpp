@@ -8,7 +8,7 @@ class Graph {
     private : int numNodes;
 
     public : Graph(int n) : numNodes(n) {
-        // Init graph with x nodes. Construct n by n matrix filled with zeros.
+        // Init graph with n nodes. Construct n by n matrix filled with zeros.
         this->adjacencyMatrix = vector<vector<int> >(n, vector<int>(n));
     }
 
@@ -28,6 +28,10 @@ class Graph {
             }
         }
     }
+
+    // Todo implement these methods:
+    void addEdge(int node, int target) {}
+    void dfs(int startNode) {}
 };
 
 int main() {
