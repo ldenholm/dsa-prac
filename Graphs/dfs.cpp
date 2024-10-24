@@ -1,10 +1,12 @@
 #include <iostream>
 #include <vector>
+#include <stack>
+#include <map>
 
 using namespace std;
 
 class Graph {
-    private : vector<vector<int>> adjacencyMatrix;
+    private : vector<vector<int> > adjacencyMatrix;
     private : int numNodes;
 
     public : Graph(int n) : numNodes(n) {
@@ -51,7 +53,7 @@ class Graph {
     }
     void addEdge(int nodeIdx, int trgtIdx) {
         // check node and target within bounds
-        if (nodeIdx, trgtIdx >= 0 && nodeIdx, trgtIdx < this->numNodes)
+        if (nodeIdx >= 0 && trgtIdx >= 0 && nodeIdx < this->numNodes && trgtIdx < this->numNodes)
         {
             this->adjacencyMatrix[nodeIdx][trgtIdx] = 1;
         }
@@ -62,25 +64,56 @@ class Graph {
         }
     }
 
-    void dfs(int startNode) {}
+    void adjacentEdges() {}
+
+    void dfs(int startNode, stack<int>& explore, map<int,bool>& discovered) {
+        if (!(startNode >= 0 && startNode < this->adjacencyMatrix.size()))
+        {
+            cout << "start node out of bounds\n";
+            return;
+        }
+
+        // base case for recursion? startNode exists in stack
+        // start with iterative solution
+        discovered[startNode] = true;
+        explore.push(startNode);
+        while (!explore.empty())
+        {
+            int curr = explore.top();
+
+            // remove it from stack
+            explore.pop();
+
+            // find all nodes adjacent to startNode and add them to the stack
+            for (int i=0; i < this->numNodes; i++) {
+                if (this->adjacencyMatrix[curr][i] == 1 && !discovered[i])
+                {
+                    // nextNode exists and not yet discovered.
+                    explore.push(i);
+                    discovered[i] = true;
+                }
+            }
+
+            cout << "node: " << curr << " discovered: " << (discovered[curr] ? "true" : "false") << endl;
+        }
+    }
 };
 
 int main() {
-    Graph g = Graph(3);
-    g.printGraph();
+    // We will construct the graph depicted in funGraph.png
+    Graph g = Graph(6);
+
+    // Since the graph begins at 1 we shift all pictured node numbers left by 1,
+    // node 1 becomes node 0 etc.
+
+    // build the edges
     g.addEdge(0, 1);
     g.addEdge(0, 2);
-    g.addEdge(1, 2);
+    g.addEdge(1, 5);
     g.addEdge(2, 3);
-    
-    cout << "after adding edges\n";
+    g.addEdge(3, 4);
     g.printGraph();
-    g.addVertex();
-    g.addEdge(2, 3);
-    cout << "now adding edge (2,3) works\n";
-    g.addVertex();
-    g.addVertex();
-    g.addVertex();
-    g.addEdge(1, 6);
-    g.printGraph();
+    stack<int> explored;
+    map<int,bool> discovered;
+    g.dfs(0, explored, discovered);
 }
