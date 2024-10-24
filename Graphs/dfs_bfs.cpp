@@ -2,6 +2,7 @@
 #include <vector>
 #include <stack>
 #include <map>
+#include <queue>
 
 using namespace std;
 
@@ -72,8 +73,7 @@ class Graph {
             cout << "start node out of bounds\n";
             return;
         }
-
-        // base case for recursion? startNode exists in stack
+        
         // start with iterative solution
         discovered[startNode] = true;
         explore.push(startNode);
@@ -94,7 +94,34 @@ class Graph {
                 }
             }
 
-            cout << "node: " << curr << " discovered: " << (discovered[curr] ? "true" : "false") << endl;
+            cout << "DFS: node: " << curr << " discovered: " << (discovered[curr] ? "true" : "false") << endl;
+        }
+    }
+
+    void bfs(int startNode, queue<int>& explore, map<int,bool>& discovered) {
+        // the difference here is we use a FIFO exploration queue.
+        if (!(startNode >= 0 && startNode < this->adjacencyMatrix.size()))
+        {
+            cout << "start node out of bounds\n";
+            return;
+        }
+        discovered[startNode] = true;
+        explore.push(startNode);
+        while (!explore.empty())
+        {
+            // find edges for node at front of queue
+            int curr = explore.front();
+            // since we are exploring curr we remove it from queue
+            explore.pop();
+            for (int i=0; i<this->adjacencyMatrix.size(); i++) {
+                if (this->adjacencyMatrix[curr][i] == 1 && !discovered[i])
+                {
+                    // add node to the queue to be explored
+                    explore.push(i);
+                    discovered[i] = true;
+                }
+            }
+            cout << "BFS: node: " << curr << " discovered: " << (discovered[curr] ? "true" : "false") << endl;
         }
     }
 };
@@ -116,4 +143,12 @@ int main() {
     stack<int> explored;
     map<int,bool> discovered;
     g.dfs(0, explored, discovered);
+    
+    // test bfs
+    queue<int> bfs_explored;
+    map<int,bool> bfs_discovered;
+    g.bfs(0, bfs_explored, bfs_discovered);
+
+    // Todo consider using unordered map to optimize lookups,
+    // probably negligible gain for the size of graph im testing with.
 }
