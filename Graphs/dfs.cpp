@@ -49,20 +49,38 @@ class Graph {
        }
 
     }
-    void addEdge(int node, int target) {}
+    void addEdge(int nodeIdx, int trgtIdx) {
+        // check node and target within bounds
+        if (nodeIdx, trgtIdx >= 0 && nodeIdx, trgtIdx < this->numNodes)
+        {
+            this->adjacencyMatrix[nodeIdx][trgtIdx] = 1;
+        }
+        else 
+        {   
+            cout << "Node: " << nodeIdx
+            << " and/or Target: " << trgtIdx << " out of bounds\n"; 
+        }
+    }
+
     void dfs(int startNode) {}
 };
 
 int main() {
     Graph g = Graph(3);
     g.printGraph();
-    g.addVertex();
-    cout << "after adding a vertex\n";
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 2);
+    g.addEdge(2, 3);
+    
+    cout << "after adding edges\n";
     g.printGraph();
-
+    g.addVertex();
+    g.addEdge(2, 3);
+    cout << "now adding edge (2,3) works\n";
     g.addVertex();
     g.addVertex();
     g.addVertex();
+    g.addEdge(1, 6);
     g.printGraph();
-    cout << "looks like add a vertex is working, woo.";
 }
