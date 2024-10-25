@@ -13,6 +13,11 @@ int fibonacci(int n) {
     return fibonacci(n-1) + fibonacci(n-2);
 }
 
+int factorial(int n) {
+    if (!(n >= 1)) { return 1; }
+    return n * factorial (n-1);
+}
+
 int main() {
     printNums(10);
     int n = 4;
@@ -23,4 +28,7 @@ int main() {
     cout << "fibSum for " << n << " = " << fibSum << endl;
     fibSum = fibonacci(20);
     cout << "fibSum for " << n << " = " << fibSum << endl;
+
+    int fac = factorial(12);
+    cout << "factorial(5) = " << fac << endl;
 }
